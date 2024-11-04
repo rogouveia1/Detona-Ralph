@@ -6,12 +6,27 @@ const state = {
         score: document.querySelector("#score"),
     },
     values:{
-        timeId: null,
         gameVelocity: 1000,
         hitPosition: 0,
         result: 0,
-    },  
+        curretTime: 60,
+    }, 
+        actions: {
+            timeId: setInterval(randomSquare, 1000),
+        countDownTimerId: setInterval (countDown, 1000),
+        }, 
 };
+
+function countDown(){
+    state.values.curretTime--;
+    state.view.timeleft.textContent = state.values.curretTime;
+
+    if (state.values.curretTime <= 0){
+        clearInterval(state.actions.countDownTimerId);
+        clearInterval(state.actions.timeId);
+        alert("Game Over! O seu resultado foi: " + state.values.result);
+    }
+}
 
 /*Definir onde estará o inimigo*/
 function randomSquare(){
@@ -28,11 +43,6 @@ function randomSquare(){
 
     }
 
-/*Mover o inimigo pelos quadrados*/    
-function moveEnemy(){
-    state.values.timeId = setInterval(randomSquare, state.values.gameVelocity);
-}    
-
 function addListenerHitBox(){
     state.view.squares.forEach((square) => {
         square.addEventListener("mousedown", () => {
@@ -46,7 +56,6 @@ function addListenerHitBox(){
 }
 
 function initalize() {
-    moveEnemy();
     addListenerHitBox();
 }
 
