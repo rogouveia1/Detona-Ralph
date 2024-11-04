@@ -27,6 +27,11 @@ function countDown(){
         alert("Game Over! O seu resultado foi: " + state.values.result);
     }
 }
+function playSound(){
+    let audio = new Audio("./src/audios/hit.m4a");
+    audio.volume = 0.2;
+    audio.play();
+}
 
 /*Definir onde estará o inimigo*/
 function randomSquare(){
@@ -50,6 +55,7 @@ function addListenerHitBox(){
                 state.values.result++
                 state.view.score.textContent = state.values.result;
                 state.values.hitPosition = null;
+                playSound();
             }
         })
     })
