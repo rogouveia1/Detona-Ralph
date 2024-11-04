@@ -21,6 +21,7 @@ background-image: url("../imagens/wall.png");
 margin-top: 1rem;
 display: flex;
 align-items: center;
+justify-content: center;
 
 }
 
